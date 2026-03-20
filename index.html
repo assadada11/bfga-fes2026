@@ -355,6 +355,96 @@
     color: var(--red); font-size: 0.9rem; min-width: 20px;
   }
 
+  .hero-entry-btn {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(0,212,255,0.9);
+    padding: 18px 60px;
+    background: rgba(0,102,255,0.2);
+    text-decoration: none;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 0 20px rgba(0,102,255,0.2);
+  }
+  .hero-entry-btn::before,
+  .hero-entry-btn::after {
+    content: '';
+    position: absolute;
+    width: 8px; height: 8px;
+    background: var(--yellow);
+  }
+  .hero-entry-btn::before { top: -4px; left: -4px; }
+  .hero-entry-btn::after { bottom: -4px; right: -4px; }
+  .hero-entry-btn:hover {
+    background: rgba(0,102,255,0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(0,102,255,0.35);
+  }
+  .hero-entry-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    letter-spacing: 0.3em;
+    color: var(--white);
+  }
+  .hero-entry-sub {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--yellow);
+  }
+
+  /* ── SUBMITTED BANDS ── */
+  .submitted-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .submitted-item {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.2s;
+  }
+  .submitted-item:first-child {
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .submitted-band-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+    min-width: 200px;
+  }
+  .submitted-members {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    font-size: 0.78rem;
+    color: var(--gray);
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 768px) {
+    .submitted-item {
+      flex-direction: column;
+      gap: 6px;
+    }
+    .submitted-band-name {
+      min-width: unset;
+      font-size: 1.1rem;
+    }
+  }
+
   /* ── TIMETABLE ── */
   #timetable { padding-top: 0; }
 
@@ -506,6 +596,7 @@
 <nav>
   <div class="nav-logo">BFGA FES</div>
   <div class="nav-links">
+    <a href="https://forms.gle/cMfcvza4QgWNDkBG9" target="_blank">ENTRY</a>
     <a href="#bands">BANDS</a>
     <a href="#timetable">TIMETABLE</a>
   </div>
@@ -533,12 +624,42 @@
     <div class="badge-sep">|</div>
     <div class="badge-item">
       <span class="badge-label">BANDS</span>
-      <span class="badge-value">5 ACTS</span>
+      <span class="badge-value">12 ACTS</span>
     </div>
   </div>
+
+  <a href="https://forms.gle/cMfcvza4QgWNDkBG9" target="_blank" class="hero-entry-btn">
+    <span class="hero-entry-label">ENTRY</span>
+    <span class="hero-entry-sub">バンドエントリーはこちら →</span>
+  </a>
+
   <div class="hero-scroll">
     <div class="scroll-line"></div>
     <span>SCROLL</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SUBMITTED BANDS -->
+<section id="submitted">
+  <div class="section-header reveal">
+    <div class="section-num">00</div>
+    <div class="section-title-wrap">
+      <span class="section-eyebrow">エントリー状況</span>
+      <h2 class="section-title">提出済バンド</h2>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="submitted-list reveal">
+
+    <!-- 提出済バンドをここに追加 -->
+    <div class="submitted-item">
+      <div class="submitted-band-name">バンド名A</div>
+      <div class="submitted-members">Vo. 　　　　Gt. 　　　　Ba. 　　　　Dr. 　　　　</div>
+    </div>
+
   </div>
 </section>
 
@@ -560,96 +681,133 @@
     <!-- Band 1 -->
     <div class="band-card reveal">
       <div class="band-slot">▶ ACT 1</div>
-      <div class="band-name">go!go!vanillas</div>
+      <div class="band-name">—</div>
       <div class="band-genre"></div>
-      <div class="band-members">
-        Vo. 　　　　Gt. 　　　　<br>
-        Ba. 　　　　Dr. 　　　　
-      </div>
-      <button class="setlist-toggle" onclick="toggleSetlist(this)">
-        <span class="arrow">▶</span> SET LIST
-      </button>
-      <div class="setlist-body">
-        <ul class="setlist-list">
-        </ul>
-      </div>
+      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
+      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
+      <div class="setlist-body"><ul class="setlist-list"></ul></div>
       <div class="band-num">01</div>
     </div>
 
     <!-- Band 2 -->
-    <div class="band-card reveal" style="transition-delay:0.1s">
+    <div class="band-card reveal" style="transition-delay:0.05s">
       <div class="band-slot">▶ ACT 2</div>
-      <div class="band-name">椎名林檎</div>
+      <div class="band-name">—</div>
       <div class="band-genre"></div>
-      <div class="band-members">
-        Vo. 　　　　Gt. 　　　　<br>
-        Ba. 　　　　Dr. 　　　　
-      </div>
-      <button class="setlist-toggle" onclick="toggleSetlist(this)">
-        <span class="arrow">▶</span> SET LIST
-      </button>
-      <div class="setlist-body">
-        <ul class="setlist-list">
-        </ul>
-      </div>
+      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
+      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
+      <div class="setlist-body"><ul class="setlist-list"></ul></div>
       <div class="band-num">02</div>
     </div>
 
     <!-- Band 3 -->
-    <div class="band-card reveal" style="transition-delay:0.2s">
+    <div class="band-card reveal" style="transition-delay:0.1s">
       <div class="band-slot">▶ ACT 3</div>
-      <div class="band-name">BOØWY</div>
+      <div class="band-name">—</div>
       <div class="band-genre"></div>
-      <div class="band-members">
-        Vo. 　　　　Gt. 　　　　<br>
-        Ba. 　　　　Dr. 　　　　
-      </div>
-      <button class="setlist-toggle" onclick="toggleSetlist(this)">
-        <span class="arrow">▶</span> SET LIST
-      </button>
-      <div class="setlist-body">
-        <ul class="setlist-list">
-        </ul>
-      </div>
+      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
+      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
+      <div class="setlist-body"><ul class="setlist-list"></ul></div>
       <div class="band-num">03</div>
     </div>
 
     <!-- Band 4 -->
-    <div class="band-card reveal" style="transition-delay:0.3s">
+    <div class="band-card reveal" style="transition-delay:0.15s">
       <div class="band-slot">▶ ACT 4</div>
-      <div class="band-name">RADWIMPS</div>
+      <div class="band-name">—</div>
       <div class="band-genre"></div>
-      <div class="band-members">
-        Vo. 　　　　Gt. 　　　　<br>
-        Ba. 　　　　Dr. 　　　　
-      </div>
-      <button class="setlist-toggle" onclick="toggleSetlist(this)">
-        <span class="arrow">▶</span> SET LIST
-      </button>
-      <div class="setlist-body">
-        <ul class="setlist-list">
-        </ul>
-      </div>
+      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
+      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
+      <div class="setlist-body"><ul class="setlist-list"></ul></div>
       <div class="band-num">04</div>
     </div>
 
     <!-- Band 5 -->
-    <div class="band-card reveal" style="transition-delay:0.4s">
+    <div class="band-card reveal" style="transition-delay:0.2s">
       <div class="band-slot">▶ ACT 5</div>
-      <div class="band-name">ハヌマーン</div>
+      <div class="band-name">—</div>
       <div class="band-genre"></div>
-      <div class="band-members">
-        Vo. 　　　　Gt. 　　　　<br>
-        Ba. 　　　　Dr. 　　　　
-      </div>
-      <button class="setlist-toggle" onclick="toggleSetlist(this)">
-        <span class="arrow">▶</span> SET LIST
-      </button>
-      <div class="setlist-body">
-        <ul class="setlist-list">
-        </ul>
-      </div>
+      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
+      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
+      <div class="setlist-body"><ul class="setlist-list"></ul></div>
       <div class="band-num">05</div>
+    </div>
+
+    <!-- Band 6 -->
+    <div class="band-card reveal" style="transition-delay:0.25s">
+      <div class="band-slot">▶ ACT 6</div>
+      <div class="band-name">—</div>
+      <div class="band-genre"></div>
+      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
+      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
+      <div class="setlist-body"><ul class="setlist-list"></ul></div>
+      <div class="band-num">06</div>
+    </div>
+
+    <!-- Band 7 -->
+    <div class="band-card reveal" style="transition-delay:0.3s">
+      <div class="band-slot">▶ ACT 7</div>
+      <div class="band-name">—</div>
+      <div class="band-genre"></div>
+      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
+      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
+      <div class="setlist-body"><ul class="setlist-list"></ul></div>
+      <div class="band-num">07</div>
+    </div>
+
+    <!-- Band 8 -->
+    <div class="band-card reveal" style="transition-delay:0.35s">
+      <div class="band-slot">▶ ACT 8</div>
+      <div class="band-name">—</div>
+      <div class="band-genre"></div>
+      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
+      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
+      <div class="setlist-body"><ul class="setlist-list"></ul></div>
+      <div class="band-num">08</div>
+    </div>
+
+    <!-- Band 9 -->
+    <div class="band-card reveal" style="transition-delay:0.4s">
+      <div class="band-slot">▶ ACT 9</div>
+      <div class="band-name">—</div>
+      <div class="band-genre"></div>
+      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
+      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
+      <div class="setlist-body"><ul class="setlist-list"></ul></div>
+      <div class="band-num">09</div>
+    </div>
+
+    <!-- Band 10 -->
+    <div class="band-card reveal" style="transition-delay:0.45s">
+      <div class="band-slot">▶ ACT 10</div>
+      <div class="band-name">—</div>
+      <div class="band-genre"></div>
+      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
+      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
+      <div class="setlist-body"><ul class="setlist-list"></ul></div>
+      <div class="band-num">10</div>
+    </div>
+
+    <!-- Band 11 -->
+    <div class="band-card reveal" style="transition-delay:0.5s">
+      <div class="band-slot">▶ ACT 11</div>
+      <div class="band-name">—</div>
+      <div class="band-genre"></div>
+      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
+      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
+      <div class="setlist-body"><ul class="setlist-list"></ul></div>
+      <div class="band-num">11</div>
+    </div>
+
+    <!-- Band 12 -->
+    <div class="band-card reveal" style="transition-delay:0.55s">
+      <div class="band-slot">▶ ACT 12</div>
+      <div class="band-name">—</div>
+      <div class="band-genre"></div>
+      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
+      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
+      <div class="setlist-body"><ul class="setlist-list"></ul></div>
+      <div class="band-num">12</div>
     </div>
 
   </div>
@@ -686,49 +844,61 @@
           </td>
         </tr>
         <tr>
-          <td class="tt-time">①</td>
+          <td class="tt-time">10:00</td>
+          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
+        </tr>
+        <tr>
+          <td class="tt-time">10:40</td>
+          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
+        </tr>
+        <tr>
+          <td class="tt-time">11:20</td>
+          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
+        </tr>
+        <tr>
+          <td class="tt-time">12:00</td>
+          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
+        </tr>
+        <tr>
+          <td class="tt-time">12:40</td>
+          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
+        </tr>
+        <tr>
+          <td class="tt-time" style="color:var(--yellow);">13:20</td>
           <td class="tt-band-cell">
-            <div class="tt-band-block">
-              <div class="tt-band-name">go!go!vanillas</div>
-              <div class="tt-band-genre"></div>
+            <div class="tt-band-block" style="background:rgba(0,212,255,0.04);">
+              <div class="tt-band-name" style="font-size:1rem; color:var(--yellow); letter-spacing:0.2em;">— BREAK —</div>
+              <div class="tt-band-genre" style="color:var(--yellow); opacity:0.6;">13:20 〜 13:50（30分）</div>
             </div>
           </td>
         </tr>
         <tr>
-          <td class="tt-time">②</td>
-          <td class="tt-band-cell">
-            <div class="tt-band-block">
-              <div class="tt-band-name">椎名林檎</div>
-              <div class="tt-band-genre"></div>
-            </div>
-          </td>
+          <td class="tt-time">13:50</td>
+          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
         </tr>
         <tr>
-          <td class="tt-time">③</td>
-          <td class="tt-band-cell">
-            <div class="tt-band-block">
-              <div class="tt-band-name">BOØWY</div>
-              <div class="tt-band-genre"></div>
-            </div>
-          </td>
+          <td class="tt-time">14:30</td>
+          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
         </tr>
         <tr>
-          <td class="tt-time">④</td>
-          <td class="tt-band-cell">
-            <div class="tt-band-block">
-              <div class="tt-band-name">RADWIMPS</div>
-              <div class="tt-band-genre"></div>
-            </div>
-          </td>
+          <td class="tt-time">15:10</td>
+          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
         </tr>
         <tr>
-          <td class="tt-time">⑤</td>
-          <td class="tt-band-cell">
-            <div class="tt-band-block">
-              <div class="tt-band-name">ハヌマーン</div>
-              <div class="tt-band-genre"></div>
-            </div>
-          </td>
+          <td class="tt-time">15:50</td>
+          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
+        </tr>
+        <tr>
+          <td class="tt-time">16:30</td>
+          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
+        </tr>
+        <tr>
+          <td class="tt-time">17:10</td>
+          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
+        </tr>
+        <tr>
+          <td class="tt-time">17:50</td>
+          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
         </tr>
         <tr>
           <td class="tt-time">END</td>
