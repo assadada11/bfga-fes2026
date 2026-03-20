@@ -364,7 +364,6 @@
   }
   .timetable {
     width: 100%;
-    min-width: 600px;
     border-collapse: collapse;
   }
   .timetable th {
@@ -386,15 +385,15 @@
   .tt-time {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 300;
-    font-size: 1rem; letter-spacing: 0.15em;
+    font-size: 1rem; letter-spacing: 0.1em;
     color: var(--gray);
-    padding: 20px 24px;
+    padding: 20px 16px;
     white-space: nowrap;
-    min-width: 100px;
+    width: 120px;
   }
-  .tt-band-cell { padding: 4px 8px; }
+  .tt-band-cell { padding: 4px 4px; }
   .tt-band-block {
-    padding: 18px 24px;
+    padding: 18px 16px;
     position: relative;
     overflow: hidden;
     transition: background 0.2s;
@@ -421,14 +420,6 @@
     font-size: 0.6rem; letter-spacing: 0.25em;
     text-transform: uppercase; color: var(--gray);
     margin-top: 2px;
-  }
-  .tt-stage {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 300;
-    font-size: 0.6rem; letter-spacing: 0.3em;
-    text-transform: uppercase;
-    padding: 20px 24px; color: var(--gray);
-    white-space: nowrap;
   }
   .stage-main { color: var(--red); }
 
@@ -488,6 +479,24 @@
     section { padding: 80px 20px; }
     .hero-date-badge { flex-wrap: wrap; gap: 20px; justify-content: center; }
     footer { padding: 40px 20px; }
+
+    .timetable th {
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      padding: 12px 10px;
+    }
+    .tt-time {
+      font-size: 0.85rem;
+      padding: 16px 10px;
+      width: 90px;
+    }
+    .tt-band-name {
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+    }
+    .tt-band-block {
+      padding: 14px 10px;
+    }
   }
 </style>
 </head>
