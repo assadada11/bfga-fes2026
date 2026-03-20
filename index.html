@@ -420,7 +420,7 @@
   .submitted-band-name {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: 1rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--white);
@@ -429,19 +429,21 @@
   .submitted-members {
     font-family: 'Outfit', sans-serif;
     font-weight: 300;
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     color: var(--gray);
     letter-spacing: 0.05em;
   }
 
   @media (max-width: 768px) {
+    .hero-scroll { display: flex; }
+    #hero { min-height: 120vh; }
     .submitted-item {
       flex-direction: column;
       gap: 6px;
     }
     .submitted-band-name {
       min-width: unset;
-      font-size: 1.1rem;
+      font-size: 0.9rem;
     }
   }
 
