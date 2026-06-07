@@ -159,12 +159,16 @@
   .hero-date-badge {
     margin-top: 48px;
     border: 1px solid var(--border);
-    padding: 14px 40px;
-    display: flex; gap: 40px; align-items: center;
+    padding: 20px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     background: rgba(0,102,255,0.06);
     position: relative;
     opacity: 0;
     animation: fadeUp 0.8s 0.8s forwards;
+    width: 100%;
+    max-width: 520px;
   }
   .hero-date-badge::before,
   .hero-date-badge::after {
@@ -176,20 +180,54 @@
   .hero-date-badge::before { top: -4px; left: -4px; }
   .hero-date-badge::after { bottom: -4px; right: -4px; }
 
-  .badge-item { text-align: center; }
-  .badge-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--red);
-    display: block; margin-bottom: 4px;
+  .badge-day {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0,102,255,0.2);
   }
-  .badge-value {
+  .badge-day:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  .badge-day-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.4rem;
-    letter-spacing: 0.1em;
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: var(--red);
+    letter-spacing: 0.05em;
+    min-width: 48px;
+    line-height: 1;
+    text-align: center;
   }
-  .badge-sep { color: var(--border); font-size: 1.5rem; }
+  .badge-day-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .badge-day-date {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: var(--white);
+  }
+  .badge-day-venue {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+    color: var(--white);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+    border-bottom: 1px solid rgba(0,212,255,0.4);
+    padding-bottom: 2px;
+  }
+  .badge-day-venue:hover { color: var(--yellow); border-color: var(--yellow); }
 
   .hero-scroll {
     position: absolute; bottom: 30px;
@@ -573,7 +611,10 @@
     nav { padding: 14px 20px; }
     .nav-links { gap: 16px; }
     section { padding: 80px 20px; }
-    .hero-date-badge { flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .hero-date-badge { width: calc(100% - 40px); max-width: 100%; padding: 16px 20px; }
+    .badge-day-date { font-size: 0.95rem; }
+    .badge-day-venue { font-size: 1rem; }
+    .badge-day-label { font-size: 1.4rem; min-width: 40px; }
     footer { padding: 40px 20px; }
 
     .timetable th {
@@ -618,19 +659,19 @@
   </h1>
   <p class="hero-sub">BFGA 91,92代 Live Music Festival 2026</p>
   <div class="hero-date-badge">
-    <div class="badge-item">
-      <span class="badge-label">DATE</span>
-      <span class="badge-value">TBD <span class="tbd">近日公開</span></span>
+    <div class="badge-day">
+      <div class="badge-day-label">DAY<br>1</div>
+      <div class="badge-day-info">
+        <div class="badge-day-date">2026 / 10 / 17 (SAT)</div>
+        <a href="https://maps.google.com/?q=place_id:ChIJ14R_pKOUGGARPeViXy59BS0" target="_blank" class="badge-day-venue">▶ 西川口 HEARTS</a>
+      </div>
     </div>
-    <div class="badge-sep">|</div>
-    <div class="badge-item">
-      <span class="badge-label">VENUE</span>
-      <span class="badge-value">TBD <span class="tbd">近日公開</span></span>
-    </div>
-    <div class="badge-sep">|</div>
-    <div class="badge-item">
-      <span class="badge-label">BANDS</span>
-      <span class="badge-value">?? ACTS</span>
+    <div class="badge-day">
+      <div class="badge-day-label">DAY<br>2</div>
+      <div class="badge-day-info">
+        <div class="badge-day-date">2026 / 10 / 18 (SUN)</div>
+        <a href="https://maps.google.com/?q=place_id:ChIJSbi_xlyNGGAR-HU0HXJOIYM" target="_blank" class="badge-day-venue">▶ 池袋 Hoteyes</a>
+      </div>
     </div>
   </div>
 
