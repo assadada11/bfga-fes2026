@@ -328,9 +328,8 @@
   .band-name {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: 2.4rem; letter-spacing: 0.08em;
+    font-size: 2.0rem; letter-spacing: 0.06em;
     margin-bottom: 8px;
-    text-transform: uppercase;
   }
   .band-genre {
     font-family: 'Outfit', sans-serif;
@@ -352,46 +351,6 @@
     line-height: 1;
   }
 
-  /* SETLIST toggle */
-  .setlist-toggle {
-    margin-top: 20px;
-    font-size: 0.7rem; letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gray);
-    background: none; border: none;
-    cursor: pointer;
-    display: flex; align-items: center; gap: 8px;
-    transition: color 0.2s;
-    padding: 0;
-  }
-  .setlist-toggle:hover { color: var(--red2); }
-  .setlist-toggle .arrow { transition: transform 0.3s; display: inline-block; }
-  .setlist-toggle.open .arrow { transform: rotate(90deg); }
-
-  .setlist-body {
-    max-height: 0; overflow: hidden;
-    transition: max-height 0.4s ease;
-  }
-  .setlist-body.open { max-height: 400px; }
-
-  .setlist-list {
-    margin-top: 16px;
-    list-style: none;
-    border-top: 1px solid var(--border);
-    padding-top: 16px;
-  }
-  .setlist-list li {
-    display: flex; align-items: baseline; gap: 12px;
-    padding: 6px 0;
-    font-size: 0.82rem;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    color: rgba(240,237,232,0.75);
-  }
-  .setlist-list li:last-child { border-bottom: none; }
-  .setlist-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    color: var(--red); font-size: 0.9rem; min-width: 20px;
-  }
 
   .hero-entry-btn {
     margin-top: 40px;
@@ -442,7 +401,6 @@
     font-size: clamp(1.4rem, 3vw, 2.2rem);
   }
 
-  /* ── SUBMITTED BANDS ── */
   .submitted-list {
     display: flex;
     flex-direction: column;
@@ -477,6 +435,10 @@
   }
 
   @media (max-width: 768px) {
+    .tt-time { width: 92px; padding: 16px 10px; font-size: 0.82rem; letter-spacing: 0.04em; }
+    .tt-band-block { padding: 15px 12px; }
+    .tt-band-name { font-size: 0.98rem; letter-spacing: 0.02em; white-space: nowrap; }
+
     .hero-scroll { display: flex; }
     #hero { min-height: 120vh; }
     .submitted-item {
@@ -542,11 +504,15 @@
   }
   .tt-band-block:hover::after { transform: scaleY(1); }
   .tt-band-block:hover { background: rgba(0,102,255,0.05); }
+  .timetable { border-collapse: separate; border-spacing: 0; }
+  .timetable tbody tr { border-bottom: 1px solid var(--border); }
+  .tt-time { border-right: 1px solid var(--border); vertical-align: middle; }
+  .tt-band-cell { vertical-align: middle; }
   .tt-band-name {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: 1.5rem; letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 1.15rem; letter-spacing: 0.04em;
+    text-transform: none;
   }
   .tt-band-genre {
     font-family: 'Outfit', sans-serif;
@@ -559,7 +525,59 @@
 
   .timetable tr:hover .tt-time { color: var(--white); }
 
-  /* TBD badge */
+
+  /* ── LINE UP CARD TUNING ── */
+.band-card {
+  padding: 1.15rem 1.2rem;
+  min-height: 150px;
+}
+.band-name {
+  font-size: 1.7rem;
+  line-height: 1.05;
+}
+@media (max-width: 700px) {
+  .band-card {
+    padding: 0.9rem 1rem;
+    min-height: 118px;
+  }
+  .band-name {
+    font-size: 1.05rem;
+    line-height: 1.1;
+  }
+}
+
+/* ── TIMETABLE PERSONAL HIGHLIGHT ── */
+.tt-band-block {
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.tt-band-block.selected {
+  background: rgba(0, 150, 255, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(0, 180, 255, 0.55);
+}
+.tt-band-block.selected::after {
+  transform: scaleY(1);
+  width: 4px;
+  background: #00b7ff;
+}
+.tt-band-block.selected .tt-band-name {
+  color: var(--white);
+}
+.tt-band-block.selected::before {
+  content: '✓';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  color: #00b7ff;
+  font-weight: 600;
+}
+
+/* TBD badge */
   .tbd {
     display: inline-block;
     background: rgba(232,0,26,0.1);
@@ -570,6 +588,66 @@
     padding: 3px 10px;
     margin-left: 12px;
     vertical-align: middle;
+  }
+
+
+  /* ── DAY TABS ── */
+  .day-tabs {
+    display: flex;
+    gap: 2px;
+    margin: -30px 0 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .day-tab {
+    flex: 1;
+    border: 1px solid transparent;
+    border-bottom: none;
+    background: rgba(255,255,255,0.03);
+    color: var(--gray);
+    padding: 14px 20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1.15rem;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .day-tab span {
+    display: inline-block;
+    margin-left: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+  }
+  .day-tab:hover { color: var(--white); background: rgba(0,102,255,0.06); }
+  .day-tab.active {
+    color: var(--white);
+    background: rgba(0,102,255,0.12);
+    border-color: var(--border);
+    border-bottom: 2px solid var(--red);
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  .empty-day {
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: var(--card-bg);
+    color: var(--gray);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.15em;
+  }
+  .empty-day span {
+    margin-top: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
   }
 
   /* ── FOOTER ── */
@@ -616,6 +694,54 @@
     .badge-day-venue { font-size: 1rem; }
     .badge-day-label { font-size: 1.4rem; min-width: 40px; }
     footer { padding: 40px 20px; }
+
+    .day-tabs {
+      margin: -18px 0 24px;
+    }
+    .day-tab {
+      padding: 12px 8px;
+      font-size: 1rem;
+    }
+    .day-tab span {
+      display: block;
+      margin: 2px 0 0;
+      font-size: 0.55rem;
+    }
+    .bands-grid {
+      grid-template-columns: 1fr;
+      gap: 2px;
+    }
+    .band-card {
+      padding: 24px 20px;
+    }
+    .band-name {
+      font-size: 1.1rem;
+      line-height: 1;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      padding-right: 0;
+    }
+    .band-members {
+      font-size: 0.72rem;
+      line-height: 1.8;
+    }
+    .tt-time {
+      width: 118px;
+      font-size: 0.72rem;
+      padding: 14px 8px;
+      letter-spacing: 0.03em;
+    }
+    .tt-band-name {
+      font-size: 1rem;
+      line-height: 1.15;
+    }
+    .tt-band-block {
+      padding: 14px 8px;
+    }
+    .empty-day {
+      min-height: 200px;
+      font-size: 1.2rem;
+    }
 
     .timetable th {
       font-size: 0.55rem;
@@ -688,127 +814,6 @@
 
 <div class="divider"></div>
 
-<!-- SUBMITTED BANDS -->
-<section id="submitted">
-  <div class="section-header reveal">
-    <div class="section-num">00</div>
-    <div class="section-title-wrap">
-      <span class="section-eyebrow">エントリー状況</span>
-      <h2 class="section-title section-title--sm">ENTRY   BAND</h2>
-    </div>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="submitted-list reveal">
-
-    <!-- 提出済バンドをここに追加 -->
-    <div class="submitted-item">
-      <div class="submitted-band-name">ASIAN KUNG-FU GENERATION</div>
-      <div class="submitted-members">Gt./Vo 浅井大輝　Gt. 鵜飼廉　Ba. 大地雅也　Dr. 遠藤碧海     </div>
-    </div>
-
-    <div class="submitted-item">
-      <div class="submitted-band-name">ハヌマーン</div>
-      <div class="submitted-members">Gt./Vo 芳賀祐紀　Ba. 花城伊吹　Dr. 古田直樹      </div>
-    </div>
-
-     <div class="submitted-item">
-      <div class="submitted-band-name">GO!GO!7188</div>
-      <div class="submitted-members">Gt./Vo 石岡愛花　Gt. 芳賀祐紀　Ba. 大地雅也　Dr. 杉下直樹      </div>
-     </div>
-
-     <div class="submitted-item">
-      <div class="submitted-band-name">フジファブリック</div>
-      <div class="submitted-members">Gt./Vo 芳賀祐紀　Gt. 宇塚拓也　Ba. 飯島由布　Key. 北村地空　Dr. 杉下直樹      </div>
-    </div>
-   
-     <div class="submitted-item">
-      <div class="submitted-band-name">My Hair is Bad</div>
-      <div class="submitted-members">Gt./Vo 高橋悠太　Ba. 佐藤慶至　Dr. 鈴木朝陽    </div>
-    </div>
-
-     <div class="submitted-item">
-      <div class="submitted-band-name">トゲナシトゲアリ</div>
-      <div class="submitted-members">Gt./Vo 金子真那香　Gt. 藤代優花　Ba. 関口柊　Key. 北村地空　Dr. 古田直樹      </div>
-    </div>
-
-    <div class="submitted-item">
-      <div class="submitted-band-name">89th オムニバス</div>
-      <div class="submitted-members">Gt./Vo 斎藤篤貴　Gt. 田中伶於　Ba. 近藤千智　Dr. 田村(鷲尾)ひなた<sup style="font-size: 0.3em;">ご結婚おめでとうございます！</sup>     </div>
-    </div>
-
-    <div class="submitted-item">
-      <div class="submitted-band-name">ハヌマーン</div>
-      <div class="submitted-members">Gt./Vo 斎藤篤貴　Ba. 久木田陽生　Dr. 杉下直樹 </div>
-    </div>
-
-    <div class="submitted-item">
-      <div class="submitted-band-name">the pillows</div>
-      <div class="submitted-members">Gt./Vo 浅井大輝　Gt. 松原央昇　Ba. 宮川瑞穂　Dr. 杉下直樹     </div>
-    </div>
-
-    <div class="submitted-item">
-      <div class="submitted-band-name">ずっと真夜中でいいのに。</div>
-      <div class="submitted-members">Vo 石岡愛花　Gt. 藤代優花　Gt. 小木韻生　Ba. 関口柊　Key. 北村地空　Dr. 大水基史      </div>
-    </div>
-
-     <div class="submitted-item">
-      <div class="submitted-band-name">9mm Parabellum Bullet</div>
-      <div class="submitted-members">Gt./Vo 鈴木皓太　Gt. 大槻奏太　Ba. 遠藤碧海 　Dr. 大水基史     </div>
-    </div>
-
-     <div class="submitted-item">
-      <div class="submitted-band-name">04 Limited sazabys</div>
-      <div class="submitted-members">Ba./Vo 古田直樹　Gt. 菊地晴貴　Gt. 根本剛瑠　Dr. 遠藤碧海     </div>
-    </div>
-
-    <div class="submitted-item">
-      <div class="submitted-band-name">Age Factory</div>
-      <div class="submitted-members">Gt./Vo 野口雄斗　Ba. 久木田陽生　Dr. 杉下直樹   </div>
-    </div>
-
-    <div class="submitted-item">
-      <div class="submitted-band-name">漢のJUMP達</div>
-      <div class="submitted-members">Vo. 山本健太　Gt. 髙橋悠太　Gt. 芳賀太郎　Ba. 佐藤慶至　Key. 清水翔太　Dr. 遠藤碧海　</div>
-    </div>
-
-    <div class="submitted-item">
-      <div class="submitted-band-name">緑黄色社会</div>
-      <div class="submitted-members">Gt./Vo 津谷智子　Gt. 鵜飼廉　Ba. 林菜々子　Key. 清水翔太　Dr. 古田直樹     </div>
-    </div>
-
-    <div class="submitted-item">
-      <div class="submitted-band-name">ASIAN KUNG-FU GENERATION</div>
-      <div class="submitted-members">Gt./Vo. 高橋悠太　Gt. 松原央昇　Ba.牛房純一　Dr.矢田晃己     </div>
-    </div>
-
-    <div class="submitted-item">
-      <div class="submitted-band-name">KANA-BOON</div>
-      <div class="submitted-members">Gt./Vo 矢田晃己　Gt. 菊地晴貴　Ba. 佐藤慶至　Dr. 八木遥介     </div>
-    </div>
-
-    <div class="submitted-item">
-      <div class="submitted-band-name">オムニバス</div>
-      <div class="submitted-members">Gt./Vo 石岡愛花　Gt. 藤代優花　Ba. 新堂響　Dr. 八木遥介     </div>
-    </div>
-    
-    <div class="submitted-item">
-      <div class="submitted-band-name">andymori</div>
-      <div class="submitted-members">Gt./Vo 佐藤慶至　Ba. 新堂響　Dr. 中村こうたろう(せんしゅ)    </div>
-    </div>
-
-    <div class="submitted-item">
-      <div class="submitted-band-name">Girls dead monster</div>
-      <div class="submitted-members">Gt./Vo 早川泰昭　Gt. 小木韻生　Ba. 大地雅也　Dr.　福田渓人     </div>
-    </div>
-
-    
-    
-  </div>
-</section>
-
-<div class="divider"></div>
-
 <!-- BANDS -->
 <section id="bands">
   <div class="section-header reveal">
@@ -820,140 +825,41 @@
     <div class="section-line"></div>
   </div>
 
-  <div class="bands-grid">
+  <div class="day-tabs reveal" role="tablist" aria-label="LINE UP day">
+    <button class="day-tab active" role="tab" aria-selected="true" onclick="switchTab('lineup', 'day1', this)">DAY 1 <span>10/17</span></button>
+    <button class="day-tab" role="tab" aria-selected="false" onclick="switchTab('lineup', 'day2', this)">DAY 2 <span>10/18</span></button>
+  </div>
 
-    <!-- Band 1 -->
-    <div class="band-card reveal">
-      <div class="band-slot">▶ ACT 1</div>
-      <div class="band-name">—</div>
-      <div class="band-genre"></div>
-      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
-      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
-      <div class="setlist-body"><ul class="setlist-list"></ul></div>
-      <div class="band-num">01</div>
+  <div id="lineup-day1" class="tab-panel active">
+    <div class="bands-grid">
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 1</div><div class="band-name">andymori</div><div class="band-members">Gt./Vo 佐藤慶至　Ba. 新堂響　Dr. 中村こうたろう(せんしゅ)</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 2</div><div class="band-name">SHISHAMO</div><div class="band-members">Vo. 金子真那香　Gt. 高橋悠太　Ba. 小野寺叶華　Dr. ともき</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 3</div><div class="band-name">トゲナシトゲアリ</div><div class="band-members">Gt./Vo 金子真那香　Gt. 藤代優花　Ba. 関口柊　Key. 北村地空　Dr. 古田直樹</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 4</div><div class="band-name">ずっと真夜中でいいのに。</div><div class="band-members">Vo 石岡愛花　Gt. 藤代優花　Gt. 小木韻生　Ba. 関口柊　Key. 北村地空　Dr. 大水基史</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 5</div><div class="band-name">9mm Parabellum Bullet</div><div class="band-members">Gt./Vo 鈴木皓太　Gt. 大槻奏太　Ba. 遠藤碧海　Dr. 大水基史</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 6</div><div class="band-name">フジファブリック</div><div class="band-members">Gt./Vo 芳賀祐紀　Gt. 宇塚拓也　Ba. 飯島由布　Key. 北村地空　Dr. 杉下直樹</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 7</div><div class="band-name">ハヌマーン</div><div class="band-members">Gt./Vo 芳賀祐紀　Ba. 花城伊吹　Dr. 古田直樹</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 8</div><div class="band-name">ASIAN KUNG-FU GENERATION</div><div class="band-members">Gt./Vo 高橋悠太　Gt. 石山胡桃　Ba. 矢是浅葱　Dr. 松本青空</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 9</div><div class="band-name">緑黄色社会</div><div class="band-members">Gt./Vo 津谷智子　Gt. 鵜飼廉　Ba. 林菜々子　Key. 清水翔太　Dr. 古田直樹</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 10</div><div class="band-name">GO!GO!7188</div><div class="band-members">Gt./Vo 石岡愛花　Gt. 芳賀祐紀　Ba. 大地雅也　Dr. 杉下直樹</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 11</div><div class="band-name">ASIAN KUNG-FU GENERATION</div><div class="band-members">Gt./Vo 浅井大輝　Gt. 鵜飼廉　Ba. 大地雅也　Dr. 遠藤碧海</div></div>
     </div>
+  </div>
 
-    <!-- Band 2 -->
-    <div class="band-card reveal" style="transition-delay:0.05s">
-      <div class="band-slot">▶ ACT 2</div>
-      <div class="band-name">—</div>
-      <div class="band-genre"></div>
-      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
-      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
-      <div class="setlist-body"><ul class="setlist-list"></ul></div>
-      <div class="band-num">02</div>
+  <div id="lineup-day2" class="tab-panel">
+    <div class="bands-grid">
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 1</div><div class="band-name">KANA-BOON</div><div class="band-members">Gt./Vo 矢田晃己　Gt. 菊地晴貴　Ba. 佐藤慶至　Dr. 八木遥介</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 2</div><div class="band-name">スーパーカー</div><div class="band-members">Gt./Vo. 鵜飼廉　Gt. 松原央昇　Ba. 林菜々子　Dr. 桑岡凛太朗</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 3</div><div class="band-name">04 Limited Sazabys</div><div class="band-members">Ba./Vo 古田直樹　Gt. 菊地晴貴　Gt. 根本剛瑠　Dr. 遠藤碧海</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 4</div><div class="band-name">オムニバス</div><div class="band-members">Gt./Vo 石岡愛花　Gt. 藤代優花　Ba. 新堂響　Dr. 八木遥介</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 5</div><div class="band-name">ASIAN KUNG-FU GENERATION</div><div class="band-members">Gt./Vo 高橋悠太　Gt. 松原</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 6</div><div class="band-name">Girls Dead Monster</div><div class="band-members">Gt./Vo 早川泰昭　Gt. 小木韻生　Ba. 大地雅也　Dr. 福田渓人</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 7</div><div class="band-name">キタニタツヤ</div><div class="band-members">Vo. 山本健太　Gt. 鵜飼廉　Gt. 小野寺一馬　Dr. 小倉なおと　Ba. 長澤隼</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 8</div><div class="band-name">ハヌマーン</div><div class="band-members">Gt./Vo 齋藤</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 9</div><div class="band-name">the pillows</div><div class="band-members">Gt./Vo 浅井大輝　Gt. 松原央昇　Ba. 宮川瑞穂　Dr. 杉下直樹</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 10</div><div class="band-name">89thオムニバス</div><div class="band-members">Gt./Vo. 斎藤篤貴　Gt. 田中伶於　Ba. 近藤千智　Dr. 田村(鷲尾)ひなた</div></div>
+      <div class="band-card reveal"><div class="band-slot">▶ ACT 11</div><div class="band-name">漢のJUMP達</div><div class="band-members">Vo. 山本健太　Gt. 髙橋悠太　Gt. 芳賀太郎　Ba. 佐藤慶至　Key. 清水翔太　Dr. 遠藤碧海</div></div>
     </div>
-
-    <!-- Band 3 -->
-    <div class="band-card reveal" style="transition-delay:0.1s">
-      <div class="band-slot">▶ ACT 3</div>
-      <div class="band-name">—</div>
-      <div class="band-genre"></div>
-      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
-      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
-      <div class="setlist-body"><ul class="setlist-list"></ul></div>
-      <div class="band-num">03</div>
-    </div>
-
-    <!-- Band 4 -->
-    <div class="band-card reveal" style="transition-delay:0.15s">
-      <div class="band-slot">▶ ACT 4</div>
-      <div class="band-name">—</div>
-      <div class="band-genre"></div>
-      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
-      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
-      <div class="setlist-body"><ul class="setlist-list"></ul></div>
-      <div class="band-num">04</div>
-    </div>
-
-    <!-- Band 5 -->
-    <div class="band-card reveal" style="transition-delay:0.2s">
-      <div class="band-slot">▶ ACT 5</div>
-      <div class="band-name">—</div>
-      <div class="band-genre"></div>
-      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
-      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
-      <div class="setlist-body"><ul class="setlist-list"></ul></div>
-      <div class="band-num">05</div>
-    </div>
-
-    <!-- Band 6 -->
-    <div class="band-card reveal" style="transition-delay:0.25s">
-      <div class="band-slot">▶ ACT 6</div>
-      <div class="band-name">—</div>
-      <div class="band-genre"></div>
-      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
-      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
-      <div class="setlist-body"><ul class="setlist-list"></ul></div>
-      <div class="band-num">06</div>
-    </div>
-
-    <!-- Band 7 -->
-    <div class="band-card reveal" style="transition-delay:0.3s">
-      <div class="band-slot">▶ ACT 7</div>
-      <div class="band-name">—</div>
-      <div class="band-genre"></div>
-      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
-      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
-      <div class="setlist-body"><ul class="setlist-list"></ul></div>
-      <div class="band-num">07</div>
-    </div>
-
-    <!-- Band 8 -->
-    <div class="band-card reveal" style="transition-delay:0.35s">
-      <div class="band-slot">▶ ACT 8</div>
-      <div class="band-name">—</div>
-      <div class="band-genre"></div>
-      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
-      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
-      <div class="setlist-body"><ul class="setlist-list"></ul></div>
-      <div class="band-num">08</div>
-    </div>
-
-    <!-- Band 9 -->
-    <div class="band-card reveal" style="transition-delay:0.4s">
-      <div class="band-slot">▶ ACT 9</div>
-      <div class="band-name">—</div>
-      <div class="band-genre"></div>
-      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
-      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
-      <div class="setlist-body"><ul class="setlist-list"></ul></div>
-      <div class="band-num">09</div>
-    </div>
-
-    <!-- Band 10 -->
-    <div class="band-card reveal" style="transition-delay:0.45s">
-      <div class="band-slot">▶ ACT 10</div>
-      <div class="band-name">—</div>
-      <div class="band-genre"></div>
-      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
-      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
-      <div class="setlist-body"><ul class="setlist-list"></ul></div>
-      <div class="band-num">10</div>
-    </div>
-
-    <!-- Band 11 -->
-    <div class="band-card reveal" style="transition-delay:0.5s">
-      <div class="band-slot">▶ ACT 11</div>
-      <div class="band-name">—</div>
-      <div class="band-genre"></div>
-      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
-      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
-      <div class="setlist-body"><ul class="setlist-list"></ul></div>
-      <div class="band-num">11</div>
-    </div>
-
-    <!-- Band 12 -->
-    <div class="band-card reveal" style="transition-delay:0.55s">
-      <div class="band-slot">▶ ACT 12</div>
-      <div class="band-name">—</div>
-      <div class="band-genre"></div>
-      <div class="band-members">Vo. 　　　　Gt. 　　　　<br>Ba. 　　　　Dr. 　　　　</div>
-      <button class="setlist-toggle" onclick="toggleSetlist(this)"><span class="arrow">▶</span> SET LIST</button>
-      <div class="setlist-body"><ul class="setlist-list"></ul></div>
-      <div class="band-num">12</div>
-    </div>
-
   </div>
 </section>
 
@@ -970,94 +876,57 @@
     <div class="section-line"></div>
   </div>
 
-  <div class="timetable-wrap reveal">
-    <table class="timetable">
-      <thead>
-        <tr>
-          <th>TIME</th>
-          <th>BAND</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="tt-time">OPEN</td>
-          <td class="tt-band-cell">
-            <div class="tt-band-block">
-              <div class="tt-band-name" style="font-size:1rem; color: var(--gray);">開場 / DOORS OPEN</div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="tt-time">10:00</td>
-          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
-        </tr>
-        <tr>
-          <td class="tt-time">10:40</td>
-          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
-        </tr>
-        <tr>
-          <td class="tt-time">11:20</td>
-          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
-        </tr>
-        <tr>
-          <td class="tt-time">12:00</td>
-          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
-        </tr>
-        <tr>
-          <td class="tt-time">12:40</td>
-          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
-        </tr>
-        <tr>
-          <td class="tt-time" style="color:var(--yellow);">13:20</td>
-          <td class="tt-band-cell">
-            <div class="tt-band-block" style="background:rgba(0,212,255,0.04);">
-              <div class="tt-band-name" style="font-size:1rem; color:var(--yellow); letter-spacing:0.2em;">— BREAK —</div>
-              <div class="tt-band-genre" style="color:var(--yellow); opacity:0.6;">13:20 〜 13:50（30分）</div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="tt-time">13:50</td>
-          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
-        </tr>
-        <tr>
-          <td class="tt-time">14:30</td>
-          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
-        </tr>
-        <tr>
-          <td class="tt-time">15:10</td>
-          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
-        </tr>
-        <tr>
-          <td class="tt-time">15:50</td>
-          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
-        </tr>
-        <tr>
-          <td class="tt-time">16:30</td>
-          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
-        </tr>
-        <tr>
-          <td class="tt-time">17:10</td>
-          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
-        </tr>
-        <tr>
-          <td class="tt-time">17:50</td>
-          <td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">—</div></div></td>
-        </tr>
-        <tr>
-          <td class="tt-time">END</td>
-          <td class="tt-band-cell">
-            <div class="tt-band-block">
-              <div class="tt-band-name" style="font-size:1rem; color: var(--gray);">終演 / SHOW ENDS</div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="day-tabs reveal" role="tablist" aria-label="TIME TABLE day">
+    <button class="day-tab active" role="tab" aria-selected="true" onclick="switchTab('timetable', 'day1', this)">DAY 1 <span>10/17</span></button>
+    <button class="day-tab" role="tab" aria-selected="false" onclick="switchTab('timetable', 'day2', this)">DAY 2 <span>10/18</span></button>
+  </div>
+
+  <div id="timetable-day1" class="tab-panel active">
+    <div class="timetable-wrap reveal">
+      <table class="timetable">
+        <thead><tr><th>TIME</th><th>BAND</th></tr></thead>
+        <tbody>
+          <tr><td class="tt-time">11:40 - 12:10</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">andymori</div></div></td></tr>
+          <tr><td class="tt-time">12:20 - 12:50</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">SHISHAMO</div></div></td></tr>
+          <tr><td class="tt-time">13:00 - 13:30</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">My Hair is Bad</div></div></td></tr>
+          <tr><td class="tt-time" style="color:var(--yellow);">13:30 - 14:00</td><td class="tt-band-cell"><div class="tt-band-block" style="background:rgba(0,212,255,0.04);"><div class="tt-band-name" style="font-size:1rem; color:var(--yellow); letter-spacing:0.2em;">— BREAK —</div><div class="tt-band-genre" style="color:var(--yellow); opacity:0.6;">13:30 〜 14:00</div></div></td></tr>
+          <tr><td class="tt-time">14:10 - 14:40</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">トゲナシトゲアリ</div></div></td></tr>
+          <tr><td class="tt-time">14:50 - 15:20</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">ずっと真夜中でいいのに。</div></div></td></tr>
+          <tr><td class="tt-time">15:30 - 16:00</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">9mm Parabellum Bullet</div></div></td></tr>
+          <tr><td class="tt-time">16:10 - 16:40</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">フジファブリック</div></div></td></tr>
+          <tr><td class="tt-time">16:50 - 17:20</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">ハヌマーン</div></div></td></tr>
+          <tr><td class="tt-time">17:30 - 18:00</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">ASIAN KUNG-FU GENERATION</div></div></td></tr>
+          <tr><td class="tt-time">18:10 - 18:40</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">緑黄色社会</div></div></td></tr>
+          <tr><td class="tt-time">18:50 - 19:20</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">GO!GO!7188</div></div></td></tr>
+          <tr><td class="tt-time">19:30 - 20:00</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">ASIAN KUNG-FU GENERATION</div></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="timetable-day2" class="tab-panel">
+    <div class="timetable-wrap reveal">
+      <table class="timetable">
+        <thead><tr><th>TIME</th><th>BAND</th></tr></thead>
+        <tbody>
+          <tr><td class="tt-time">11:30 - 12:00</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">KANA-BOON</div></div></td></tr>
+          <tr><td class="tt-time">12:15 - 12:45</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">スーパーカー</div></div></td></tr>
+          <tr><td class="tt-time">13:00 - 13:30</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">04 Limited Sazabys</div></div></td></tr>
+          <tr><td class="tt-time">13:45 - 14:15</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">オムニバス</div></div></td></tr>
+          <tr><td class="tt-time">14:30 - 15:00</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">ASIAN KUNG-FU GENERATION</div></div></td></tr>
+          <tr><td class="tt-time">15:15 - 15:45</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">Girls Dead Monster</div></div></td></tr>
+          <tr><td class="tt-time">16:00 - 16:30</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">キタニタツヤ</div></div></td></tr>
+          <tr><td class="tt-time">16:45 - 17:15</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">ハヌマーン</div></div></td></tr>
+          <tr><td class="tt-time">17:30 - 18:00</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">the pillows</div></div></td></tr>
+          <tr><td class="tt-time">18:15 - 18:45</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">89thオムニバス</div></div></td></tr>
+          <tr><td class="tt-time">19:00 - 19:30</td><td class="tt-band-cell"><div class="tt-band-block"><div class="tt-band-name">漢のJUMP達</div></div></td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <p style="margin-top:24px; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gray);">
-    ※ 出演順・時間は変更になる場合があります。日程・会場は近日公開予定。
+    ※ 出演順・時間は変更になる場合があります。
   </p>
 </section>
 
@@ -1068,11 +937,55 @@
 </footer>
 
 <script>
-  // Setlist toggle
-  function toggleSetlist(btn) {
-    const body = btn.nextElementSibling;
-    btn.classList.toggle('open');
-    body.classList.toggle('open');
+
+  // Tap timetable entries to keep personal highlights.
+  // Multiple entries can stay highlighted at the same time.
+  document.querySelectorAll('.tt-band-block').forEach(block => {
+    const isBreak = block.querySelector('.tt-band-name')?.textContent.trim().includes('BREAK');
+    if (isBreak) return;
+
+    block.setAttribute('role', 'button');
+    block.setAttribute('tabindex', '0');
+    block.setAttribute('aria-pressed', 'false');
+
+    const toggleHighlight = () => {
+      const selected = block.classList.toggle('selected');
+      block.setAttribute('aria-pressed', selected ? 'true' : 'false');
+    };
+
+    block.addEventListener('click', toggleHighlight);
+    block.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleHighlight();
+      }
+    });
+  });
+
+  // Day tab switching
+  function switchTab(section, day, btn) {
+    const prefix = section === 'lineup' ? 'lineup-' : 'timetable-';
+    const sectionId = section === 'lineup' ? 'bands' : 'timetable';
+    const sectionEl = document.getElementById(sectionId);
+
+    if (!sectionEl) return;
+
+    sectionEl.querySelectorAll('.day-tab').forEach(tab => {
+      tab.classList.remove('active');
+      tab.setAttribute('aria-selected', 'false');
+    });
+    sectionEl.querySelectorAll('.tab-panel').forEach(panel => {
+      panel.classList.remove('active');
+    });
+
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+
+    const target = document.getElementById(prefix + day);
+    if (target) {
+      target.classList.add('active');
+      target.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
   }
 
   // Scroll reveal
